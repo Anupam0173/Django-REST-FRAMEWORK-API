@@ -18,11 +18,10 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/token/',
-         jwt_views.TokenObtainPairView.as_view(),
+    # http://127.0.0.1:8000/api/token/
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
-    path('api/token/refresh/',
-         jwt_views.TokenRefreshView.as_view(),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
     path('', include('apibasic.urls')),
 ]

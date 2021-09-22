@@ -66,21 +66,24 @@ class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.Crea
     def post(self, request):
         return self.create(request)
 
+# ------------------All types of authentication---------------------
+# http://127.0.0.1:8000/gupdate/2/
+
 
 class GenericAPIDetailView(mixins.RetrieveModelMixin,
                            mixins.UpdateModelMixin,
                            mixins.DestroyModelMixin,
                            generics.GenericAPIView):
     # below 2 lines is for basic authentication functionality
-    # authentication_classes = [SessionAuthentication, BasicAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     # below line for token authentication
     # authentication_classes = [TokenAuthentication]
     # permission_classes = [IsAuthenticated]
 
     # below line is for jwt authentication functionality
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
